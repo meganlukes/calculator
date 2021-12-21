@@ -45,34 +45,43 @@ def multiply(n1, n2):
   return n1 * n2
 def divide(n1, n2):
   return n1 / n2
-
+def operation_finder(input):
+  if input == "add" or input == "+":
+    op = "+"
+  elif input == "subtract" or input == "-":
+    op = "-"
+  elif input == "multiply" or input == "*":
+    op = "*"
+  elif input == "divide" or input == "/":
+    op = "/"
+  else:
+    op = "invalid input"
+  return op
 operations = {
   "+": add,
   "-": subtract,
   "*": multiply,
   "/": divide
 }
+
+
 running = True
 num1 = int(input("What's the first number?: "))
 while running:
   num2 = int(input("What's the second number?: "))
   op = input("Do you want to add, subtract, multiply, or divide? ")
-  if op == "add" or op == "+":
-    op = "+"
-  elif op == "subtract" or op == "-":
-    op = "-"
-  elif op == "multiply" or op == "*":
-    op = "*"
-  elif op == "divide" or op == "/":
-    op = "/"
-  else:
+  oppo = operation_finder(op)
+  if oppo == "invalid input":
     print("Invalid input")
-  function = operations[op]
-  num3 = function(num1, num2)
-  print(num3)
-  cont = input(f"Type 'y' to continue calculating with {num3} or type 'n' to exit. ")
-  if cont == "y":
-    num1 = num3
-  else:
     running = False
     print("Goodbye.")
+  else:
+    function = operations[oppo]
+    num3 = function(num1, num2)
+    print(num3)
+    cont = input(f"Type 'y' to continue calculating with {num3} or type 'n' to exit. ")
+    if cont == "y":
+      num1 = num3
+    else:
+      running = False
+      print("Goodbye.")
